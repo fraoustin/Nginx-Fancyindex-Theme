@@ -7,6 +7,59 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
+function clickSearch() {
+    var listOfItems =  document.getElementsByClassName("search");
+    for (var i = 0; i < listOfItems.length; ++i) {
+        var item = listOfItems[i];
+        item.classList.remove("search-novisible");
+    }
+    var listOfItems =  document.getElementsByClassName("no-search");
+    for (var i = 0; i < listOfItems.length; ++i) {
+        var item = listOfItems[i];
+        item.classList.add("search-novisible");
+    }
+    document.getElementById("search-field").select();
+}
+
+function clickResetSearch() {
+    var listOfItems =  document.getElementsByClassName("no-search");
+    for (var i = 0; i < listOfItems.length; ++i) {
+        var item = listOfItems[i];
+        item.classList.remove("search-novisible");
+    }
+    var listOfItems =  document.getElementsByClassName("search");
+    for (var i = 0; i < listOfItems.length; ++i) {
+        var item = listOfItems[i];
+        item.classList.add("search-novisible");
+    }
+    document.getElementById("search-field").value = "";
+
+    var listOfItems =  document.getElementsByClassName("item");
+    for (var i = 0; i < listOfItems.length; ++i) {
+        listOfItems[i].classList.remove("resultsearch-novisible");
+    }
+}
+
+// Get enter in the input field search
+var input = document.getElementById("search-field");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        searchregex = document.getElementById("search-field").value;
+        var listOfItems =  document.getElementsByClassName("item");
+        for (var i = 0; i < listOfItems.length; ++i) {
+            var item = listOfItems[i];
+            value = item.getElementsByTagName("a")[0].name;
+            if (value.match(searchregex)) {
+                item.classList.remove("resultsearch-novisible");
+            } else {
+                item.classList.add("resultsearch-novisible");
+            };
+        }
+    }
+}); 
+
+
 // manage title, bar, ...
 var currentPath = document.getElementById("original_fancyindex").childNodes[0].textContent.trim();
 document.getElementById("currentPathTitle").innerHTML = currentPath;
@@ -54,10 +107,10 @@ arrayOfCurrentPath.forEach(function(element) {
 
 // list table
 var templateItem=`
-    <li class="mdl-list__item">
+    <li class="mdl-list__item item">
         <span class="mdl-list__item-primary-content">
             <span class="mdl-list__item-avatar specColor"><i class="material-icons">specIcon</i></span>
-            <a href="specHref">
+            <a name="specLib" href="specHref">
             <span>
                 specLib
                 <span class="second_line">specDte</span>
@@ -106,9 +159,11 @@ for (var i = 0; i < listOfItems.length; ++i) {
                                                                                 .replace("specSize",size)
                                                                                 .replace("specDte",dte)
                                                                                 .replace("specColor",color)
-                                                                                .replace("specLib",lib)));
+                                                                                .replace("specLib",lib)
+                                                                                .replace("specLib",lib)
+                                                                            ));
     
 }
 var out = window.location.href.replace(/:\/\//, '://log:out@');
 document.getElementById("logOut").href = out;
-//console.log(out);
+

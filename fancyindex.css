@@ -25,6 +25,18 @@ a {
     display: none;
 }
 
+.search-novisible {
+    display: none;
+}
+
+.resultsearch-novisible {
+    display: none;
+}
+
+.fullwidth {
+    width: calc(100% - 40px);
+}
+
 @media (max-width: 900px) {
     .no-mobile {
         display: none;
