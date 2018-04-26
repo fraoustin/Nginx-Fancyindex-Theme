@@ -119,9 +119,11 @@ var templateItem=`
             </a>
         </span>
         <span class="mdl-list__item-secondary-content">
+            <!--
             <a class="mdl-list__item-secondary-action mdl-color-text--accent" href="#">
                 <i class="material-icons">more_vert</i>
             </a>
+            -->
         </span>
     </li>
 `
