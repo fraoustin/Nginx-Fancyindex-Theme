@@ -58,6 +58,8 @@ you can change color of interface
 
 reste test global, search, déconnexion, ...
 
+changer icone couleur Parent Directory?
+
 voir pour faire la même chose sur gitweb? avoir si cela est possible
 
 pour webdav il faudra ajouter uplod et delete element
