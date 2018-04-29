@@ -155,6 +155,10 @@ for (var i = 0; i < listOfItems.length; ++i) {
     if (dte == '-') {
         dte=''
     }
+    if (size == '' && dte == '' && lib == "Parent directory") {
+        icon = "arrow_back";
+        color = "mdl-color--primary";
+    }
 
     document.getElementById("listItems").appendChild(htmlToElement(templateItem.replace("specHref",href)
                                                                                 .replace("specIcon",icon)

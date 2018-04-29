@@ -58,10 +58,9 @@ you can change color of interface
 
 reste test global, search, déconnexion, ...
 
-changer icone couleur Parent Directory?
+faire une fiche pour avoir date, size, lib ..
 
 voir pour faire la même chose sur gitweb? avoir si cela est possible
 
 pour webdav il faudra ajouter uplod et delete element
-voir intégration font et icone
 
