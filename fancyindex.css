@@ -37,6 +37,10 @@ a {
     width: calc(100% - 40px);
 }
 
+.getinfo-novisible {
+    display: none;
+}
+
 @media (max-width: 900px) {
     .no-mobile {
         display: none;

@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="/fancyindex/roboto.css">
     <link rel="stylesheet" href="/fancyindex/material-icons.css">
+    <link rel="stylesheet" type="text/css" href="/fancyindex/dialog-polyfill.css" />
 
 
     <script src="/fancyindex/mdl/material.js"></script>
@@ -46,7 +47,7 @@
         <div class="mdl-layout__header-row">
             <!-- Title -->
             <span class="mdl-layout-title" id="currentTitle" >Title</span>
-            <div class="no-search mdl-layout-spacer"></div>
+            <div class="mdl-layout-spacer"></div>
             <!-- Add spacer, to align navigation to the right -->
             <a id="homebtn" href="" class="no-mobile">
                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -127,6 +128,13 @@
             </ul>
         </nav>
     </div>
+    <dialog class="mdl-dialog">
+        <div id="templateDialog">
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="clickCloseInfo()">Close</button>
+        </div>
+    </dialog>
     <main class="mdl-layout__content">
         <div class="content_fancyindex">
 

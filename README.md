@@ -55,12 +55,4 @@ you can change color of interface
 
 ## TODO
 
-
-reste test global, search, déconnexion, ...
-
-faire une fiche pour avoir date, size, lib ..
-
-voir pour faire la même chose sur gitweb? avoir si cela est possible
-
-pour webdav il faudra ajouter uplod et delete element
-
+optimize code
