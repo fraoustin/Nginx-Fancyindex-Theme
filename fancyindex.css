@@ -47,7 +47,7 @@ a {
     }
 }
 
-.mdl-list__item-primary-content {
+.mdl-dialog__content, .mdl-list__item-primary-content {
     word-break: break-all;
 }
 
