@@ -46,3 +46,11 @@ a {
         display: none;
     }
 }
+
+.mdl-list__item-primary-content {
+    word-break: break-all;
+}
+
+.mdl-list__item-avatar {
+    flex-shrink: 0;
+}
