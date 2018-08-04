@@ -51,13 +51,13 @@ a {
     word-break: break-all;
 }
 
-.mdl-list__item-avatar {
+.mdl-button, .mdl-list__item-avatar {
     flex-shrink: 0;
 }
 
-.mdl-layout__header-row * {
+#currentTitle, #currentPathTitle {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    flex-shrink: unset;
+    flex-shrink: 1;
 }
