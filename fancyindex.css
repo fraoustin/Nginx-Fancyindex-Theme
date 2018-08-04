@@ -54,3 +54,10 @@ a {
 .mdl-list__item-avatar {
     flex-shrink: 0;
 }
+
+.mdl-layout__header-row * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-shrink: unset;
+}
