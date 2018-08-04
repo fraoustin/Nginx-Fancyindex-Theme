@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,109 +39,108 @@
     <link rel="stylesheet" href="/fancyindex/mdl/material.min.css">
     <link rel="stylesheet" href="/fancyindex/fancyindex.css">
 </head>
+
 <body>
-<!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-    <!-- waterfall for second row hidden if scroll-->
-    <header class="mdl-layout__header mdl-layout__header--waterfall"> 
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title" id="currentTitle" >Title</span>
-            <div class="mdl-layout-spacer"></div>
-            <!-- Add spacer, to align navigation to the right -->
-            <a id="homebtn" href="" class="no-mobile">
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                    <i class="material-icons" role="presentation">home</i>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <!-- waterfall for second row hidden if scroll-->
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title" id="currentTitle">Title</span>
+                <div class="mdl-layout-spacer"></div>
+                <!-- Add spacer, to align navigation to the right -->
+                <a id="homebtn" href="" class="no-mobile">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">home</i>
+                    </button>
+                </a>
+                <button id="sortbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons" role="presentation">sort</i>
                 </button>
-            </a>
-            <button id="sortbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons" role="presentation">sort</i>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-list" for="sortbtn">
-                <li class="mdl-list__item mdl-menu__item">
-                    <a id="sortByDate" href="?C=M&O=D">
-                        <span class="mdl-list__item-primary-content">
-                            <i class="material-icons mdl-list__item-icon">date_range</i>
-                            By Date
-                        </span>
-                    </a>
-                </li>
-                <li class="mdl-list__item mdl-menu__item">
-                    <a id="sortByName" href="?C=N&O=D">
-                        <span class="mdl-list__item-primary-content">
-                            <i class="material-icons mdl-list__item-icon">sort_by_alpha</i>
-                            By Name
-                        </span>
-                    </a>
-                </li>
-                <li class="mdl-list__item mdl-menu__item">
-                    <a id="sortBySize" href="?C=S&O=D">
-                        <span class="mdl-list__item-primary-content">
-                            <i class="material-icons mdl-list__item-icon">filter_list</i>
-                            By Size
-                        </span>
-                    </a>
-                </li>
-            </ul>
-            <a id="logOut" href="">
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                    <i class="material-icons" role="presentation">lock_open</i>
-                </button>
-            </a>
-        </div>
-        <div class="mdl-layout__header-row">
-            <div class="no-search mdl-typography--title" id="currentPathTitle">/path/path/path</div>
-            <div class="no-search mdl-layout-spacer"></div>
-            <label class="no-search mdl-button mdl-js-button mdl-button--icon" onclick="clickSearch()">
-                <i class="material-icons">search</i>
-            </label>
-            <div class="search search-novisible mdl-textfieldno-search fullwidth">
-                <input class="mdl-textfield__input fullwidth" type="text" id="search-field">
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-list" for="sortbtn">
+                    <li class="mdl-list__item mdl-menu__item">
+                        <a id="sortByDate" href="?C=M&O=D">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">date_range</i>
+                                By Date
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mdl-list__item mdl-menu__item">
+                        <a id="sortByName" href="?C=N&O=D">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">sort_by_alpha</i>
+                                By Name
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mdl-list__item mdl-menu__item">
+                        <a id="sortBySize" href="?C=S&O=D">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">filter_list</i>
+                                By Size
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <a id="logOut" href="">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">lock_open</i>
+                    </button>
+                </a>
             </div>
-            <div class="search search-novisible mdl-layout-spacer"></div>
-            <label class="search search-novisible mdl-button mdl-js-button mdl-button--icon" for="search-field" onclick="clickResetSearch()">
-                <i class="material-icons">clear</i>
-            </label>
-        </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <ul class="mdl-list">
-            <li class="mdl-layout-title mdl-list__item mdl-navigation__link">
-                <span class="mdl-color-text--primary mdl-list__item-primary-content">
-                    <i class="mdl-color-text--primary material-icons mdl-list__item-icon">filter_drama</i>
-                    FancyIndex
-                </span>
-            </li>
-        </ul>
-
-        
-        <nav class="mdl-navigation">
-            <ul class="mdl-list " id="menuNav">
-                <li class="mdl-list__item mdl-navigation__link">
-                    <a id="homelink" href="">
-                        <span class="mdl-list__item-primary-content">
-                            <i class="material-icons mdl-list__item-icon">home</i>
-                            Home
-                        </span>
-                    </a>
+            <div class="mdl-layout__header-row">
+                <div class="no-search mdl-typography--title" id="currentPathTitle">/path/path/path</div>
+                <div class="no-search mdl-layout-spacer"></div>
+                <label class="no-search mdl-button mdl-js-button mdl-button--icon" onclick="clickSearch()">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="search search-novisible mdl-textfieldno-search fullwidth">
+                    <input class="mdl-textfield__input fullwidth" type="text" id="search-field">
+                </div>
+                <div class="search search-novisible mdl-layout-spacer"></div>
+                <label class="search search-novisible mdl-button mdl-js-button mdl-button--icon" for="search-field" onclick="clickResetSearch()">
+                    <i class="material-icons">clear</i>
+                </label>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <ul class="mdl-list">
+                <li class="mdl-layout-title mdl-list__item mdl-navigation__link">
+                    <span class="mdl-color-text--primary mdl-list__item-primary-content">
+                        <i class="mdl-color-text--primary material-icons mdl-list__item-icon">filter_drama</i>
+                        FancyIndex
+                    </span>
                 </li>
             </ul>
-        </nav>
-    </div>
-    <dialog class="mdl-dialog">
-        <div id="templateDialog">
+
+
+            <nav class="mdl-navigation">
+                <ul class="mdl-list " id="menuNav">
+                    <li class="mdl-list__item mdl-navigation__link">
+                        <a id="homelink" href="">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">home</i>
+                                Home
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button" onclick="clickCloseInfo()">Close</button>
-            <button type="button" class="mdl-button" onclick="clickCopyURL()">Copy URL</button>
-            <input id="copyfrom" style="width: 1px; border: 0; opacity: 0; cursor:default" readonly>
-        </div>
-    </dialog>
-    <main class="mdl-layout__content">
-        <div class="content_fancyindex">
+        <dialog class="mdl-dialog">
+            <div id="templateDialog">
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button" onclick="clickCloseInfo()">Close</button>
+                <button type="button" class="mdl-button" onclick="clickCopyURL()">Copy URL</button>
+                <input id="copyfrom" style="width: 1px; border: 0; opacity: 0; cursor:default" readonly>
+            </div>
+        </dialog>
+        <main class="mdl-layout__content">
+            <div class="content_fancyindex">
 
-            <ul class="mdl-list" id="listItems">
-            </ul>
-            <div id="original_fancyindex">
-
-
+                <ul class="mdl-list" id="listItems">
+                </ul>
+                <div id="original_fancyindex">

@@ -29,12 +29,12 @@ function clickCloseInfo() {
 }
 
 function clickSearch() {
-    var listOfItems =  document.getElementsByClassName("search");
+    var listOfItems = document.getElementsByClassName("search");
     for (var i = 0; i < listOfItems.length; ++i) {
         var item = listOfItems[i];
         item.classList.remove("search-novisible");
     }
-    var listOfItems =  document.getElementsByClassName("no-search");
+    var listOfItems = document.getElementsByClassName("no-search");
     for (var i = 0; i < listOfItems.length; ++i) {
         var item = listOfItems[i];
         item.classList.add("search-novisible");
@@ -43,25 +43,25 @@ function clickSearch() {
 }
 
 function clickResetSearch() {
-    var listOfItems =  document.getElementsByClassName("no-search");
+    var listOfItems = document.getElementsByClassName("no-search");
     for (var i = 0; i < listOfItems.length; ++i) {
         var item = listOfItems[i];
         item.classList.remove("search-novisible");
     }
-    var listOfItems =  document.getElementsByClassName("search");
+    var listOfItems = document.getElementsByClassName("search");
     for (var i = 0; i < listOfItems.length; ++i) {
         var item = listOfItems[i];
         item.classList.add("search-novisible");
     }
     document.getElementById("search-field").value = "";
 
-    var listOfItems =  document.getElementsByClassName("item");
+    var listOfItems = document.getElementsByClassName("item");
     for (var i = 0; i < listOfItems.length; ++i) {
         listOfItems[i].classList.remove("resultsearch-novisible");
     }
 }
 
-var templateDialog=`    
+var templateDialog = `    
     <div>
         <li class="mdl-list__item item">
             <span class="mdl-list__item-primary-content">
@@ -76,18 +76,18 @@ var templateDialog=`
 function clickGetInfo(id) {
     var dialog = document.querySelector('dialog');
     var showDialogButton = document.querySelector('#show-dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
+    if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
     };
     var listOfItems = document.getElementById("list").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     var item = listOfItems[id]
     lib = item.childNodes[0].childNodes[0].textContent;
     size = item.childNodes[1].textContent;
     dte = item.childNodes[2].textContent;
-    if (lib.substring(lib.length-1) == "/") {
+    if (lib.substring(lib.length - 1) == "/") {
         icon = "folder_open";
         color = "mdl-color--accent";
-        lib = lib.substring(0,lib.length-1)
+        lib = lib.substring(0, lib.length - 1)
     } else {
         icon = "insert_drive_file";
         color = "mdl-color--accent-dark";
@@ -95,12 +95,12 @@ function clickGetInfo(id) {
     while (document.getElementById("templateDialog").firstChild) {
         document.getElementById("templateDialog").removeChild(document.getElementById("templateDialog").firstChild);
     }
-    var elt = htmlToElement(templateDialog.replace("specIcon",icon)
-                                            .replace("specLib",lib)
-                                            .replace("specColor",color)
-                                            )
+    var elt = htmlToElement(templateDialog.replace("specIcon", icon)
+        .replace("specLib", lib)
+        .replace("specColor", color)
+    )
     document.getElementById("templateDialog").appendChild(elt);
-    
+
     var listOfItems = document.getElementById("list").getElementsByTagName("thead")[0].getElementsByTagName("th");
     for (var i = 0; i < listOfItems.length; ++i) {
         var info = document.createElement('div');
@@ -118,11 +118,11 @@ function clickGetInfo(id) {
 
 // Get enter in the input field search
 var input = document.getElementById("search-field");
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function (event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         searchregex = document.getElementById("search-field").value;
-        var listOfItems =  document.getElementsByClassName("item");
+        var listOfItems = document.getElementsByClassName("item");
         for (var i = 0; i < listOfItems.length; ++i) {
             var item = listOfItems[i];
             value = item.getElementsByTagName("a")[0].name;
@@ -133,7 +133,7 @@ input.addEventListener("keyup", function(event) {
             };
         }
     }
-}); 
+});
 
 
 // manage title, bar, ...
@@ -141,10 +141,10 @@ var currentPath = document.getElementById("original_fancyindex").childNodes[0].t
 document.getElementById("currentPathTitle").innerHTML = currentPath;
 var arrayOfCurrentPath = currentPath.split("/");
 arrayOfCurrentPath.splice(0, 1);
-arrayOfCurrentPath.splice(arrayOfCurrentPath.length-1, 1);
+arrayOfCurrentPath.splice(arrayOfCurrentPath.length - 1, 1);
 
 if (arrayOfCurrentPath.length > 0) {
-    document.getElementById("currentTitle").innerHTML = arrayOfCurrentPath[arrayOfCurrentPath.length-1];
+    document.getElementById("currentTitle").innerHTML = arrayOfCurrentPath[arrayOfCurrentPath.length - 1];
 } else {
     document.getElementById("currentTitle").innerHTML = "Root";
 };
@@ -163,7 +163,7 @@ if (window.location.href.split('?')[1] == "C=S&O=D") {
 };
 
 // menu
-var templateLink=`
+var templateLink = `
     <li class="mdl-list__item mdl-navigation__link">
         <a href="specHref">
             <span class="mdl-list__item-primary-content">
@@ -173,16 +173,16 @@ var templateLink=`
         </a>
     </li>`
 
-var pathelt="/"
-arrayOfCurrentPath.forEach(function(element) {
+var pathelt = "/"
+arrayOfCurrentPath.forEach(function (element) {
     pathelt = pathelt + element + "/";
-    document.getElementById("menuNav").appendChild(htmlToElement(templateLink.replace("specHref",pathelt)
-                                                                                .replace("specIcon","subdirectory_arrow_right")
-                                                                                .replace("specLib",element)));
+    document.getElementById("menuNav").appendChild(htmlToElement(templateLink.replace("specHref", pathelt)
+        .replace("specIcon", "subdirectory_arrow_right")
+        .replace("specLib", element)));
 });
 
 // list table
-var templateItem=`
+var templateItem = `
     <li class="mdl-list__item item">
         <span class="mdl-list__item-primary-content">
             <span class="mdl-list__item-avatar specColor"><i class="material-icons">specIcon</i></span>
@@ -220,7 +220,7 @@ try {
     if (window.location.href.split('?')[1].split("&")[0] == "C=S") {
         typOfSort = "size"
     }
-} catch(error) {}
+} catch (error) { }
 for (var i = 0; i < listOfItems.length; ++i) {
     var item = listOfItems[i];
     href = item.childNodes[0].childNodes[0].href;
@@ -229,19 +229,19 @@ for (var i = 0; i < listOfItems.length; ++i) {
     dte = item.childNodes[2].textContent;
     viewGetInfo = "";
     txtInfo = "";
-    if (lib.substring(lib.length-1) == "/") {
+    if (lib.substring(lib.length - 1) == "/") {
         icon = "folder_open";
         color = "mdl-color--accent";
-        lib = lib.substring(0,lib.length-1)
+        lib = lib.substring(0, lib.length - 1)
     } else {
         icon = "insert_drive_file";
         color = "mdl-color--accent-dark";
     }
     if (size == '-') {
-        size=''
+        size = ''
     }
     if (dte == '-') {
-        dte=''
+        dte = ''
     }
     if (size == '' && dte == '' && lib == "Parent directory") {
         icon = "arrow_back";
@@ -255,18 +255,18 @@ for (var i = 0; i < listOfItems.length; ++i) {
         txtInfo = size;
     }
 
-    document.getElementById("listItems").appendChild(htmlToElement(templateItem.replace("specHref",href)
-                                                                                .replace("specIcon",icon)
-                                                                                //.replace("specSize",size)
-                                                                                //.replace("specDte",dte)
-                                                                                .replace("specInfo", txtInfo)
-                                                                                .replace("specColor",color)
-                                                                                .replace("specLib",lib)
-                                                                                .replace("specLib",lib)
-                                                                                .replace("specViewGetInfo",viewGetInfo)
-                                                                                .replace("specId",i)
-                                                                            ));
-    
+    document.getElementById("listItems").appendChild(htmlToElement(templateItem.replace("specHref", href)
+        .replace("specIcon", icon)
+        //.replace("specSize",size)
+        //.replace("specDte",dte)
+        .replace("specInfo", txtInfo)
+        .replace("specColor", color)
+        .replace("specLib", lib)
+        .replace("specLib", lib)
+        .replace("specViewGetInfo", viewGetInfo)
+        .replace("specId", i)
+    ));
+
 }
 var out = window.location.href.replace(/:\/\//, '://log:out@');
 document.getElementById("logOut").href = out;
