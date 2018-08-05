@@ -268,5 +268,6 @@ for (var i = 0; i < listOfItems.length; ++i) {
     ));
 
 }
-var out = window.location.href.replace(/:\/\//, '://log:out@');
+
+var out = window.location.href.replace(/:\/\//, '://log:out@');    
 document.getElementById("logOut").href = out;
