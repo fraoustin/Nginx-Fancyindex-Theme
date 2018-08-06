@@ -1,5 +1,20 @@
 console.log("run fancyindex.js");
 
+new ClipboardJS('#btnCopyURL', {
+    container: document.querySelector('dialog'),
+    text: function() {
+        return document.querySelector('dialog').getAttribute('url');
+    }
+});
+
+function getDialogFileURL() {
+    var url = window.location.href
+    url = url.substr(0, url.lastIndexOf('/') + 1);
+    var nodes = document.querySelector('#templateDialog div li span').childNodes;
+    var str = url + encodeURI(nodes[nodes.length - 2].nodeValue.trim());
+    return str;
+}
+
 function htmlToElement(html) {
     var template = document.createElement('template');
     html = html.trim(); // Never return a text node of whitespace as the result
@@ -7,24 +22,9 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
-function clickCopyURL() {
-    var url = window.location.href
-    url = url.substr(0, url.lastIndexOf("/") + 1);
-    var nodes = document.querySelector('#templateDialog div li span').childNodes;
-    var str = url + encodeURI(nodes[nodes.length - 2].nodeValue.trim());
-    copy(str);
-}
-
-function copy(str) {
-    var textArea = document.getElementById('copyfrom');
-    textArea.value = str;
-    textArea.select();
-    document.execCommand('copy');
-    textArea.value = '';
-}
-
 function clickCloseInfo() {
     var dialog = document.querySelector('dialog');
+    dialog.removeAttribute('url');
     dialog.close();
 }
 
@@ -109,6 +109,7 @@ function clickGetInfo(id) {
         // console.log(item.childNodes[i].textContent)   
         document.getElementById("dialog-content").appendChild(info);
     }
+    dialog.setAttribute('url', getDialogFileURL());
     //search info and insert into dialog
     dialog.showModal();
 }
