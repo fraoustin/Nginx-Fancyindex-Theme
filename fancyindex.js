@@ -1,30 +1,30 @@
 console.log("run fancyindex.js");
 
-new ClipboardJS('#btnCopyURL', {
-    container: document.querySelector('dialog'),
+new ClipboardJS("#btnCopyURL", {
+    container: document.querySelector("dialog"),
     text: function() {
-        return document.querySelector('dialog').getAttribute('url');
+        return document.querySelector("dialog").getAttribute("url");
     }
 });
 
 function getDialogFileURL() {
-    var url = window.location.href
-    url = url.substr(0, url.lastIndexOf('/') + 1);
-    var nodes = document.querySelector('#templateDialog div li span').childNodes;
+    var url = window.location.href;
+    url = url.substr(0, url.lastIndexOf("/") + 1);
+    var nodes = document.querySelector("#templateDialog div li span").childNodes;
     var str = url + encodeURI(nodes[nodes.length - 2].nodeValue.trim());
     return str;
 }
 
 function htmlToElement(html) {
-    var template = document.createElement('template');
+    var template = document.createElement("template");
     html = html.trim(); // Never return a text node of whitespace as the result
     template.innerHTML = html;
     return template.content.firstChild;
 }
 
 function clickCloseInfo() {
-    var dialog = document.querySelector('dialog');
-    dialog.removeAttribute('url');
+    var dialog = document.querySelector("dialog");
+    dialog.removeAttribute("url");
     dialog.close();
 }
 
@@ -71,55 +71,65 @@ var templateDialog = `
         </li>
         <div class="mdl-dialog__content" id="dialog-content">
         </div>
-    </div>`
+    </div>`;
 
 function clickGetInfo(id) {
-    var dialog = document.querySelector('dialog');
-    var showDialogButton = document.querySelector('#show-dialog');
+    var dialog = document.querySelector("dialog");
+    var showDialogButton = document.querySelector("#show-dialog");
     if (!dialog.showModal) {
         dialogPolyfill.registerDialog(dialog);
-    };
-    var listOfItems = document.getElementById("list").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-    var item = listOfItems[id]
+    }
+    var listOfItems = document
+        .getElementById("list")
+        .getElementsByTagName("tbody")[0]
+        .getElementsByTagName("tr");
+    var item = listOfItems[id];
     lib = item.childNodes[0].childNodes[0].textContent;
     size = item.childNodes[1].textContent;
     dte = item.childNodes[2].textContent;
     if (lib.substring(lib.length - 1) == "/") {
         icon = "folder_open";
         color = "mdl-color--accent";
-        lib = lib.substring(0, lib.length - 1)
+        lib = lib.substring(0, lib.length - 1);
     } else {
         icon = "insert_drive_file";
         color = "mdl-color--accent-dark";
     }
     while (document.getElementById("templateDialog").firstChild) {
-        document.getElementById("templateDialog").removeChild(document.getElementById("templateDialog").firstChild);
+        document
+            .getElementById("templateDialog")
+            .removeChild(document.getElementById("templateDialog").firstChild);
     }
-    var elt = htmlToElement(templateDialog.replace("specIcon", icon)
-        .replace("specLib", lib)
-        .replace("specColor", color)
-    )
+    var elt = htmlToElement(
+        templateDialog
+            .replace("specIcon", icon)
+            .replace("specLib", lib)
+            .replace("specColor", color)
+    );
     document.getElementById("templateDialog").appendChild(elt);
 
-    var listOfItems = document.getElementById("list").getElementsByTagName("thead")[0].getElementsByTagName("th");
+    var listOfItems = document
+        .getElementById("list")
+        .getElementsByTagName("thead")[0]
+        .getElementsByTagName("th");
     for (var i = 0; i < listOfItems.length; ++i) {
-        var info = document.createElement('div');
-        info.innerHTML = listOfItems[i].childNodes[0].textContent + " : " + item.childNodes[i].textContent;
-        // console.log(listOfItems[i].childNodes[0].textContent) 
-        // console.log(item.childNodes[i].textContent)   
+        var info = document.createElement("div");
+        info.innerHTML =
+            listOfItems[i].childNodes[0].textContent + " : " + item.childNodes[i].textContent;
+        // console.log(listOfItems[i].childNodes[0].textContent)
+        // console.log(item.childNodes[i].textContent)
         document.getElementById("dialog-content").appendChild(info);
     }
-    dialog.setAttribute('url', getDialogFileURL());
+    dialog.setAttribute("url", getDialogFileURL());
     //search info and insert into dialog
     dialog.showModal();
 }
 
 // GLOBAL
 
-
 // Get enter in the input field search
 var input = document.getElementById("search-field");
-input.addEventListener("keyup", function (event) {
+input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         searchregex = document.getElementById("search-field").value;
@@ -131,11 +141,10 @@ input.addEventListener("keyup", function (event) {
                 item.classList.remove("resultsearch-novisible");
             } else {
                 item.classList.add("resultsearch-novisible");
-            };
+            }
         }
     }
 });
-
 
 // manage title, bar, ...
 var currentPath = document.getElementById("original_fancyindex").childNodes[0].textContent.trim();
@@ -145,23 +154,24 @@ arrayOfCurrentPath.splice(0, 1);
 arrayOfCurrentPath.splice(arrayOfCurrentPath.length - 1, 1);
 
 if (arrayOfCurrentPath.length > 0) {
-    document.getElementById("currentTitle").innerHTML = arrayOfCurrentPath[arrayOfCurrentPath.length - 1];
+    document.getElementById("currentTitle").innerHTML =
+        arrayOfCurrentPath[arrayOfCurrentPath.length - 1];
 } else {
     document.getElementById("currentTitle").innerHTML = "Root";
-};
+}
 document.getElementById("homelink").href = "../".repeat(arrayOfCurrentPath.length);
 document.getElementById("homebtn").href = "../".repeat(arrayOfCurrentPath.length);
 
 // manage sort
-if (window.location.href.split('?')[1] == "C=M&O=D") {
+if (window.location.href.split("?")[1] == "C=M&O=D") {
     document.getElementById("sortByDate").href = "?C=M&O=A";
-};
-if (window.location.href.split('?')[1] == "C=N&O=D") {
+}
+if (window.location.href.split("?")[1] == "C=N&O=D") {
     document.getElementById("sortByName").href = "?C=N&O=A";
-};
-if (window.location.href.split('?')[1] == "C=S&O=D") {
+}
+if (window.location.href.split("?")[1] == "C=S&O=D") {
     document.getElementById("sortBySize").href = "?C=S&O=A";
-};
+}
 
 // menu
 var templateLink = `
@@ -172,14 +182,19 @@ var templateLink = `
                 specLib
             </span>
         </a>
-    </li>`
+    </li>`;
 
-var pathelt = "/"
-arrayOfCurrentPath.forEach(function (element) {
+var pathelt = "/";
+arrayOfCurrentPath.forEach(function(element) {
     pathelt = pathelt + element + "/";
-    document.getElementById("menuNav").appendChild(htmlToElement(templateLink.replace("specHref", pathelt)
-        .replace("specIcon", "subdirectory_arrow_right")
-        .replace("specLib", element)));
+    document.getElementById("menuNav").appendChild(
+        htmlToElement(
+            templateLink
+                .replace("specHref", pathelt)
+                .replace("specIcon", "subdirectory_arrow_right")
+                .replace("specLib", element)
+        )
+    );
 });
 
 // list table
@@ -202,26 +217,29 @@ var templateItem = `
             </a>
         </span>
     </li>
-`
+`;
 
-var listOfItems = document.getElementById("list").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+var listOfItems = document
+    .getElementById("list")
+    .getElementsByTagName("tbody")[0]
+    .getElementsByTagName("tr");
 var href = "";
 var lib = "";
 var size = "";
 var dte = "";
 var icon = ""; // folder_open or insert_drive_file
-var color = ""; // mdl-color--accent or mdl-color--accent-dark 
+var color = ""; // mdl-color--accent or mdl-color--accent-dark
 var viewGetInfo = "";
 var txtInfo = "";
-var typOfSort = "name"
+var typOfSort = "name";
 try {
-    if (window.location.href.split('?')[1].split("&")[0] == "C=M") {
-        typOfSort = "date"
+    if (window.location.href.split("?")[1].split("&")[0] == "C=M") {
+        typOfSort = "date";
     }
-    if (window.location.href.split('?')[1].split("&")[0] == "C=S") {
-        typOfSort = "size"
+    if (window.location.href.split("?")[1].split("&")[0] == "C=S") {
+        typOfSort = "size";
     }
-} catch (error) { }
+} catch (error) {}
 for (var i = 0; i < listOfItems.length; ++i) {
     var item = listOfItems[i];
     href = item.childNodes[0].childNodes[0].href;
@@ -233,18 +251,18 @@ for (var i = 0; i < listOfItems.length; ++i) {
     if (lib.substring(lib.length - 1) == "/") {
         icon = "folder_open";
         color = "mdl-color--accent";
-        lib = lib.substring(0, lib.length - 1)
+        lib = lib.substring(0, lib.length - 1);
     } else {
         icon = "insert_drive_file";
         color = "mdl-color--accent-dark";
     }
-    if (size == '-') {
-        size = ''
+    if (size == "-") {
+        size = "";
     }
-    if (dte == '-') {
-        dte = ''
+    if (dte == "-") {
+        dte = "";
     }
-    if (size == '' && dte == '' && lib == "Parent directory") {
+    if (size == "" && dte == "" && lib == "Parent directory") {
         icon = "arrow_back";
         color = "mdl-color--primary";
         viewGetInfo = "getinfo-novisible";
@@ -256,19 +274,22 @@ for (var i = 0; i < listOfItems.length; ++i) {
         txtInfo = size;
     }
 
-    document.getElementById("listItems").appendChild(htmlToElement(templateItem.replace("specHref", href)
-        .replace("specIcon", icon)
-        //.replace("specSize",size)
-        //.replace("specDte",dte)
-        .replace("specInfo", txtInfo)
-        .replace("specColor", color)
-        .replace("specLib", lib)
-        .replace("specLib", lib)
-        .replace("specViewGetInfo", viewGetInfo)
-        .replace("specId", i)
-    ));
-
+    document.getElementById("listItems").appendChild(
+        htmlToElement(
+            templateItem
+                .replace("specHref", href)
+                .replace("specIcon", icon)
+                //.replace("specSize",size)
+                //.replace("specDte",dte)
+                .replace("specInfo", txtInfo)
+                .replace("specColor", color)
+                .replace("specLib", lib)
+                .replace("specLib", lib)
+                .replace("specViewGetInfo", viewGetInfo)
+                .replace("specId", i)
+        )
+    );
 }
 
-var out = window.location.href.replace(/:\/\//, '://log:out@');    
+var out = window.location.href.replace(/:\/\//, "://log:out@");
 document.getElementById("logOut").href = out;
