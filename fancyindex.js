@@ -7,14 +7,6 @@ new ClipboardJS("#btnCopyURL", {
     }
 });
 
-function getDialogFileURL() {
-    var url = window.location.href;
-    url = url.substr(0, url.lastIndexOf("/") + 1);
-    var nodes = document.querySelector("#templateDialog div li span").childNodes;
-    var str = url + encodeURI(nodes[nodes.length - 2].nodeValue.trim());
-    return str;
-}
-
 function htmlToElement(html) {
     var template = document.createElement("template");
     html = html.trim(); // Never return a text node of whitespace as the result
@@ -120,7 +112,11 @@ function clickGetInfo(id) {
         // console.log(item.childNodes[i].textContent)
         document.getElementById("dialog-content").appendChild(info);
     }
-    dialog.setAttribute("url", getDialogFileURL());
+
+    var url = window.location.href;
+    url = url.substr(0, url.lastIndexOf("/") + 1);
+    dialog.setAttribute("url", url + encodeURI(lib));
+
     //search info and insert into dialog
     dialog.showModal();
 }
