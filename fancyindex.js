@@ -82,7 +82,6 @@ function clickGetInfo(id) {
     if (lib.substring(lib.length - 1) == "/") {
         icon = "folder_open";
         color = "mdl-color--accent";
-        lib = lib.substring(0, lib.length - 1);
     } else {
         icon = "insert_drive_file";
         color = "mdl-color--accent-dark";
@@ -115,7 +114,7 @@ function clickGetInfo(id) {
 
     var url = window.location.href;
     url = url.substr(0, url.lastIndexOf("/") + 1);
-    dialog.setAttribute("url", url + encodeURI(lib));
+    dialog.setAttribute("url", encodeURI(decodeURI(url) + lib).replace('#', '%23'));
 
     //search info and insert into dialog
     dialog.showModal();
