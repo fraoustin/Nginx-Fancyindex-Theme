@@ -1,5 +1,3 @@
-console.log("run fancyindex.js");
-
 new ClipboardJS("#btnCopyURL", {
     container: document.querySelector("dialog"),
     text: function() {
@@ -82,7 +80,6 @@ function clickGetInfo(id) {
     if (lib.substring(lib.length - 1) == "/") {
         icon = "folder_open";
         color = "mdl-color--accent";
-        lib = lib.substring(0, lib.length - 1);
     } else {
         icon = "insert_drive_file";
         color = "mdl-color--accent-dark";
@@ -108,14 +105,12 @@ function clickGetInfo(id) {
         var info = document.createElement("div");
         info.innerHTML =
             listOfItems[i].childNodes[0].textContent + " : " + item.childNodes[i].textContent;
-        // console.log(listOfItems[i].childNodes[0].textContent)
-        // console.log(item.childNodes[i].textContent)
         document.getElementById("dialog-content").appendChild(info);
     }
 
     var url = window.location.href;
     url = url.substr(0, url.lastIndexOf("/") + 1);
-    dialog.setAttribute("url", url + encodeURI(lib));
+    dialog.setAttribute("url", encodeURI(decodeURI(url) + lib).replace('#', '%23'));
 
     //search info and insert into dialog
     dialog.showModal();
@@ -133,7 +128,7 @@ input.addEventListener("keyup", function(event) {
         for (var i = 0; i < listOfItems.length; ++i) {
             var item = listOfItems[i];
             value = item.getElementsByTagName("a")[0].name;
-            if (value.match(searchregex)) {
+            if (value.match(new RegExp(searchregex, 'i'))) {
                 item.classList.remove("resultsearch-novisible");
             } else {
                 item.classList.add("resultsearch-novisible");
