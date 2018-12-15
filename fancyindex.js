@@ -1,5 +1,3 @@
-console.log("run fancyindex.js");
-
 new ClipboardJS("#btnCopyURL", {
     container: document.querySelector("dialog"),
     text: function() {
@@ -107,8 +105,6 @@ function clickGetInfo(id) {
         var info = document.createElement("div");
         info.innerHTML =
             listOfItems[i].childNodes[0].textContent + " : " + item.childNodes[i].textContent;
-        // console.log(listOfItems[i].childNodes[0].textContent)
-        // console.log(item.childNodes[i].textContent)
         document.getElementById("dialog-content").appendChild(info);
     }
 
