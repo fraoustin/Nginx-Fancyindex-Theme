@@ -132,7 +132,7 @@ input.addEventListener("keyup", function(event) {
         for (var i = 0; i < listOfItems.length; ++i) {
             var item = listOfItems[i];
             value = item.getElementsByTagName("a")[0].name;
-            if (value.match(searchregex)) {
+            if (value.match(new RegExp(searchregex, 'i'))) {
                 item.classList.remove("resultsearch-novisible");
             } else {
                 item.classList.add("resultsearch-novisible");
