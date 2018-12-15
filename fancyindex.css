@@ -46,3 +46,18 @@ a {
         display: none;
     }
 }
+
+.mdl-dialog__content, .mdl-list__item-primary-content {
+    word-break: break-all;
+}
+
+.mdl-button, .mdl-list__item-avatar {
+    flex-shrink: 0;
+}
+
+#currentTitle, #currentPathTitle {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+}
