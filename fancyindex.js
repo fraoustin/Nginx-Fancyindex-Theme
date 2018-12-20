@@ -118,24 +118,27 @@ function clickGetInfo(id) {
 
 // GLOBAL
 
-// Get enter in the input field search
+function runSearch() {
+    searchregex = document.getElementById("search-field").value;
+    var listOfItems = document.getElementsByClassName("item");
+    for (var i = 0; i < listOfItems.length; ++i) {
+        var item = listOfItems[i];
+        value = item.getElementsByTagName("a")[0].name;
+        if (value.match(new RegExp(searchregex, 'i'))) {
+            item.classList.remove("resultsearch-novisible");
+        } else {
+            item.classList.add("resultsearch-novisible");
+        }
+    }
+}
+
+//// Get enter in the input field search
 var input = document.getElementById("search-field");
 input.addEventListener("keyup", function(event) {
     event.preventDefault();
-    if (event.keyCode === 13) {
-        searchregex = document.getElementById("search-field").value;
-        var listOfItems = document.getElementsByClassName("item");
-        for (var i = 0; i < listOfItems.length; ++i) {
-            var item = listOfItems[i];
-            value = item.getElementsByTagName("a")[0].name;
-            if (value.match(new RegExp(searchregex, 'i'))) {
-                item.classList.remove("resultsearch-novisible");
-            } else {
-                item.classList.add("resultsearch-novisible");
-            }
-        }
-    }
+    runSearch();
 });
+
 
 // manage title, bar, ...
 var currentPath = document.getElementById("original_fancyindex").childNodes[0].textContent.trim();
