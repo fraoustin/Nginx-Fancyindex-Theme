@@ -57,3 +57,9 @@ you can change color of interface
 ## TODO
 
 optimize code
+
+## THANK YOU
+
+- [ViRb3](https://github.com/ViRb3)
+- [amagri](https://github.com/amagri)
+
