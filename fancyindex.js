@@ -110,7 +110,7 @@ function clickGetInfo(id) {
 
     var url = window.location.href;
     url = url.substr(0, url.lastIndexOf("/") + 1);
-    dialog.setAttribute("url", encodeURI(decodeURI(url) + lib).replace('#', '%23'));
+    dialog.setAttribute("url", url + encodeURIComponent(lib));
 
     //search info and insert into dialog
     dialog.showModal();
